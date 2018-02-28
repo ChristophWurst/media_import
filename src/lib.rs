@@ -66,7 +66,6 @@ impl MediaImport {
 
     pub fn import(&self, path: &PathBuf) -> Result<(), failure::Error> {
         let config = config::get_user_config()?;
-        println!("using config {:?}", config);
         let mut imports = ImportSet::new();
         let mut other = 0;
 
