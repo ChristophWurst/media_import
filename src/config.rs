@@ -8,8 +8,10 @@ use xdg::{BaseDirectories, BaseDirectoriesError};
 
 #[derive(Debug, Fail)]
 pub enum Error {
-    #[fail(display = "XDG error: {}", err)] XDGError { err: BaseDirectoriesError },
-    #[fail(display = "config parsing error: {}", err)] ParsingError { err: serde_json::Error },
+    #[fail(display = "XDG error: {}", err)]
+    XDGError { err: BaseDirectoriesError },
+    #[fail(display = "config parsing error: {}", err)]
+    ParsingError { err: serde_json::Error },
 }
 
 #[derive(Debug, Deserialize)]
