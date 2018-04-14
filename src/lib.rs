@@ -80,12 +80,23 @@ impl MediaImport {
         }
 
         println!(
-            "found {} images, {} videos and {} other files.",
+            "found {} audio, {} images, {} videos and {} other files.",
+            imports.audio().len(),
             imports.images().len(),
             imports.videos().len(),
             other,
         );
 
+        for audio in imports.audio() {
+            let d = self.get_media_creation_date(audio)?;
+            self.move_file(
+                config.target_path(),
+                d.year(),
+                &format!("{:02}{:02}", d.month(), d.day()),
+                "Audio",
+                &audio,
+            )?;
+        }
         for img in imports.images() {
             let d = self.get_media_creation_date(img)?;
             self.move_file(
