@@ -1,4 +1,5 @@
 use std::path::PathBuf;
+
 use mime::{self, Mime};
 
 pub struct ImportSet {
@@ -17,17 +18,46 @@ impl ImportSet {
     }
 
     pub fn add_media(&mut self, path: PathBuf, media_mime: Mime) -> bool {
-        if media_mime.type_() == mime::AUDIO {
-            self.audio.push(path);
-            true
-        } else if media_mime.type_() == mime::IMAGE {
-            self.images.push(path);
-            true
-        } else if media_mime.type_() == mime::VIDEO {
-            self.videos.push(path);
-            true
-        } else {
-            false
+        if !path.is_file() {
+            return false;
+        }
+
+        match (
+            media_mime.type_(),
+            path.extension().and_then(|osstr| osstr.to_str()),
+        ) {
+            (mime::AUDIO, _) => {
+                self.audio.push(path);
+                true
+            }
+            (_, Some("MP3")) => {
+                self.audio.push(path);
+                true
+            }
+            (_, Some("mp3")) => {
+                self.audio.push(path);
+                true
+            }
+            (_, Some("WAV")) => {
+                self.audio.push(path);
+                true
+            }
+            (_, Some("wav")) => {
+                self.audio.push(path);
+                true
+            }
+            (mime::IMAGE, _) => {
+                self.images.push(path);
+                true
+            }
+            (mime::VIDEO, _) => {
+                self.videos.push(path);
+                true
+            }
+            _ => {
+                println!("ignoring {} file", media_mime.type_());
+                false
+            }
         }
     }
 
