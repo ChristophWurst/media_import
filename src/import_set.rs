@@ -54,10 +54,7 @@ impl ImportSet {
                 self.videos.push(path);
                 true
             }
-            _ => {
-                println!("ignoring {} file", media_mime.type_());
-                false
-            }
+            _ => false,
         }
     }
 
