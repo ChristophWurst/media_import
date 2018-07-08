@@ -50,6 +50,14 @@ impl ImportSet {
                 self.images.push(path);
                 true
             }
+            (_, Some("mp4")) => {
+                self.videos.push(path);
+                true
+            }
+            (_, Some("MP4")) => {
+                self.videos.push(path);
+                true
+            }
             (mime::VIDEO, _) => {
                 self.videos.push(path);
                 true
