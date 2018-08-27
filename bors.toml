@@ -1,0 +1,7 @@
+status = [
+  "continuous-integration/travis-ci/push",
+]
+block_labels = ["blocked"]
+required_approvals = 1
+delete_merged_branches = true
+
