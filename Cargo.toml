@@ -5,7 +5,7 @@ authors = ["Christoph Wurst <christoph@winzerhof-wurst.at>"]
 
 [dependencies]
 chrono = "0.4.6"
-docopt = "1.0.2"
+docopt = "1.1.0"
 failure = "0.1.5"
 failure_derive = "0.1.3"
 indicatif = "0.11.0"
