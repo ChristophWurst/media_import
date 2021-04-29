@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: cargo
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "02:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: failure_derive
+    versions:
+    - 0.1.8
+  - dependency-name: chrono
+    versions:
+    - 0.4.19
